@@ -1,0 +1,72 @@
+{% extends 'blog/base.html' %}
+{% load django_bootstrap5 %}
+
+{% block title %}home{% endblock title %}
+
+{% block content %}
+
+<div class="py-4">
+  <div class="container">
+    <!-- carousel-->
+    <div class="carousel slide" data-interval="500"  id="main_visual" data-bs-ride="carousel">
+      <!-- indicator -->
+      <ol class="carousel-indicators">
+        <li data-bs-target="#main_visual" data-bs-slide-to="0" class="active"></li>
+        <li data-bs-target="#main_visual" data-bs-slide-to="1"></li>
+        <li data-bs-target="#main_visual" data-bs-slide-to="2"></li>
+      </ol>
+      <!-- / インジケーター -->
+      <!-- カルーセル内枠 -->
+      <div class="carousel-inner" >
+        <!-- スライド01 -->
+        <div class="carousel-item active">
+          <img class="img-fluid w-100" src="static/img/bike.jpg" alt="bike">
+          
+        </div>
+        <!-- / スライド01 -->
+        <!-- スライド02 -->
+        <div class="carousel-item">
+          <img class="img-fluid w-100" src="static/img/pc.jpg" alt="pc">
+        </div>
+        <!-- / スライド02 -->
+        <!-- スライド03 -->
+        <div class="carousel-item ">
+          <img class="img-fluid w-100" src="static/img/load.jpg" alt="load">
+          
+        </div>
+        <!-- / スライド03 -->
+      </div>
+    <!-- controler -->
+    
+      <a class="carousel-control-prev" href="#main_visual" role="button" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">前に戻る</span>
+      </a>
+      <a class="carousel-control-next" href="#main_visual" role="button" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">次に進む</span>
+      </a>
+    <!-- /controler -->
+    </div><!-- /#main_visual.carousel slide -->
+  </div><!-- /.container -->
+</div><!-- /.py-2 -->
+
+<div class="container">
+  <h2 class="text-center"><br>
+    Pythonを使いソフトウェア開発とAIについて学ぶ
+  </h2><!-- /.text-center -->
+
+  <div class="col-10">
+    <p class="mt-4 text-wrap">
+      　AIの自然言語処理に興味を持ちディープラーニングを勉強しはじめた。
+      また、AIで実世界の課題を解決するためにソフトウェアに落とし込む必要性も感じたためソフトウェアの勉強もしている。
+      文を分析するタスク（要約、翻訳、分類）に興味があったためTransformerのエンコーダー層に惹かれていた。GPT-3が出たときデコーダー層すごいと思ったが
+      、粗も見えた。しかし、StableDiffusionがでて画像分野において生成系モデルが騒がれ始めた後すぐChatGPTがでてきてからは。
+      ChatGPTは生成系AIなのだが要約、分類などのタスクもこなしてしまうし会話の情報を保存してそれを考慮した回答をするのもすごい。
+      <br>今はもうGPT-4がでたので失神するしかない。。。
+    </p>
+  </div><!-- /.row -->
+
+</div><!-- /.container -->
+
+{% endblock content %}
