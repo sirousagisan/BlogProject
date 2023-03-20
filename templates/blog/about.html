@@ -6,23 +6,68 @@
 {% block content %}
 
 
+{% if sent %}
+  <div class="container text-center mt-5">
+    <h1>お問い合わせありがとうございます</h1>
+  </div><!-- /.container text-center -->
+{% else %}
+<div class="container mt-4">
+  <div class="row justify-content-center pt-4">
+    <div class="col-5">
+      <h2 class="">
+        plofile 
+      </h2>
+      <p class="pt-3">
+        電子工学科卒<br>
+        現在、情報科学専攻　修士1年
+      </p>
+    </div><!-- /.col-5 -->
+    <div class="col-3"></div><!-- /.col-3 -->
+    
+    <div class="col-4">
+      <div class="card" style="max-width: 25rem;">
+        <img src="{% static 'img/pc.png' %}" alt="pc" class="card-img-top">
+        <div class="crad-body text-center">
+          <h4 class="card-title">
+            SNS
+          </h4><!-- /.card-title text-center -->
+          <div class="col">
+            <a href="https://twitter.com/yyyyuuuuabc">
+              <img src="{% static 'img/twitter.png' %}" alt="twitter" width="40" height="40">
+            </a>
+            <a href="https://github.com/sirousagisan">
+              <img src="{% static 'img/github.png' %}" alt="github" height="37" width="37">
+            </a>
+          </div><!-- /.col -->
+        </div><!-- /.crad-body -->
+      </div><!-- /.card -->
+    </div><!-- /.col-4 -->
+  </div><!-- /.row -->
+
+  <div class="row justify-content-center mt-5">
+    <div class="col-md-6 ">
+      <h1 class="mt-5">
+        お問い合わせ
+      </h1><!-- /.mt-5 -->
+      <form method="POST">
+        {% for field in form %}
+
+        <label for="{{ field.id_for_label}}" class="form-label mt-2">{{ field.label }} </label><br><!-- /.form-label -->
+        {{ field }} <br>
+
+        {% endfor %}
+        {% csrf_token %}
+        <div class="text-end">
+          <button class="btn btn-primary" type="submit" >送信する</button>
+        </div><!-- /.text-end -->
+        
+      </form>
+    </div><!-- /.col align-self-center -->
+  </div><!-- /.row -->
+</div><!-- /.container -->
 
 
+{% endif %}
 
-  {% if sent %}
-    <h1>E-mail successfully sent</h1>
-  {% else %}
-    <form method="POST">
-      {% for field in form %}
-      {{ field.label }} <br>
-      {{ field }} <br>
-      {% endfor %}
-      {% csrf_token %}
-      <input type="submit" value="Send e-mail">
-    </form>
-  {% endif %}
-
-
-<img src="{% static 'img/twitter.png' %}" alt="twitter">
 
 {% endblock content %}
