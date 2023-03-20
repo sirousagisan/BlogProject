@@ -5,17 +5,23 @@
 
 {% block content %}
 
+
+
+
+
   {% if sent %}
     <h1>E-mail successfully sent</h1>
   {% else %}
     <form method="POST">
-      {{ form.as_p }}
+      {% for field in form %}
+      {{ field.label }} <br>
+      {{ field }} <br>
+      {% endfor %}
       {% csrf_token %}
       <input type="submit" value="Send e-mail">
     </form>
   {% endif %}
 
-<h1>hello</h1>
 
 <img src="{% static 'img/twitter.png' %}" alt="twitter">
 
