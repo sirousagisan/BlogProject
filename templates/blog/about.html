@@ -13,16 +13,19 @@
 {% else %}
 <div class="container mt-4">
   <div class="row justify-content-center pt-4">
-    <div class="col-5">
-      <h2 class="">
-        plofile 
-      </h2>
-      <p class="pt-3">
-        電子工学科卒<br>
-        現在、情報科学専攻　修士1年
-      </p>
+    <div class="col-4">
+      <div class="card card-body" style="max-width: 25rem;">
+        <h3 class="card-title py-2">
+          &nbsp;plofile
+        </h3><!-- /.card-title -->
+        <p class="card-text mt-4">
+          電子工学科卒<br>
+          現在、情報科学専攻　修士1年<br><br>
+          ソフトウェア開発と自然言語処理に興味がある。<br>
+
+        </p><!-- /.card-text -->
+      </div><!-- /.card card-body -->
     </div><!-- /.col-5 -->
-    <div class="col-3"></div><!-- /.col-3 -->
     
     <div class="col-4">
       <div class="card" style="max-width: 25rem;">
@@ -42,10 +45,9 @@
         </div><!-- /.crad-body -->
       </div><!-- /.card -->
     </div><!-- /.col-4 -->
-  </div><!-- /.row -->
 
-  <div class="row justify-content-center mt-5">
-    <div class="col-md-6 ">
+    <div class="col-4">
+      <div class="card card-body">
       <h1 class="mt-5">
         お問い合わせ
       </h1><!-- /.mt-5 -->
@@ -57,13 +59,17 @@
 
         {% endfor %}
         {% csrf_token %}
-        <div class="text-end">
+        <div class="text-end ">
           <button class="btn btn-primary" type="submit" >送信する</button>
         </div><!-- /.text-end -->
         
       </form>
     </div><!-- /.col align-self-center -->
+      </div><!-- /.card card-body -->
+      
   </div><!-- /.row -->
+
+
 </div><!-- /.container -->
 
 
