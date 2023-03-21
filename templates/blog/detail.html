@@ -1,12 +1,29 @@
 {% extends 'blog/base.html' %}
 
-{% block title %}post.title{% endblock title %}
+{% block title %}{{ post.title }}{% endblock title %}
 
 {% block content %}
 
-<h1>{{ post.title }}</h1>
-<p class="date">
-Published {{ post.publish }} by {{ post.author }}
-</p>
-{{ post.body|linebreaks }}
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-8" >
+      <h1 style="color: #00bfff">{{ post.title }}</h1>
+      <p class="date" style="color:#ccd5db">
+      Published {{ post.publish }} 
+      </p>
+      <p style="color:#ccd5db">
+        {{ post.body }}
+      </p>
+    </div><!-- /.col -->
+  </div><!-- /.row -->
+</div><!-- /.container -->
+
+<div class="container d-none d-sm-block">
+  <div class="row">
+    <div class="col">
+      <h1>hello</h1>
+    </div><!-- /.col -->
+  </div><!-- /.row -->
+</div><!-- /.container d-none d-sm-block -->
+
 {% endblock content %}
