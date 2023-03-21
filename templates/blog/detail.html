@@ -1,6 +1,8 @@
 {% extends 'blog/base.html' %}
+{% load blog_tags %}
 
 {% block title %}{{ post.title }}{% endblock title %}
+
 
 {% block content %}
 
@@ -11,9 +13,9 @@
       <p class="date" style="color:#ccd5db">
       Published {{ post.publish }} 
       </p>
-      <p style="color:#ccd5db">
-        {{ post.body }}
-      </p>
+      
+      {{ post.body|markdown|truncatewords_html:30 }}
+      
     </div><!-- /.col -->
   </div><!-- /.row -->
 </div><!-- /.container -->

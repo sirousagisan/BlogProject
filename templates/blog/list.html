@@ -1,4 +1,5 @@
 {% extends 'blog/base.html' %}
+{% load blog_tags %}
 
 {% block title %}My Blog{% endblock %}
 
@@ -6,7 +7,12 @@
 <div class="container">
   <div class="row">
     <div class="col">
-        <h1 class="px-5 py-4">My Blog</h1>
+        <h1 class="px-5 pt-4">My Blog</h1>
+        <h5 class="px-5">I've written {% total_posts %} posts so far</h4>
+          <h3 class="px-5">
+            Latest posts
+            {% show_latest_posts %}
+          </h3><!-- /.px-5 -->
     </div><!-- /.col -->
   </div><!-- /.row -->
 </div><!-- /.container -->
@@ -38,9 +44,11 @@
   </div><!-- /.row -->
   
   {% endfor %}
-  <div class="text-center">
-    {% include "paginator2.html" with page_obj=page_obj %}
-  </div><!-- /.text-center -->
+  <div class="row justify-content-center">
+    <div class="col-6 mt-5">
+      {% include "paginator2.html" with page_obj=page_obj %}
+    </div><!-- /.col -->
+  </div><!-- /.row justify-content-center -->
 </div><!-- /.container -->
 
 
