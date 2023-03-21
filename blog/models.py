@@ -2,6 +2,8 @@ from django.db import models
 from django.utils import timezone
 from taggit.managers import TaggableManager
 from django.urls import reverse
+import pytz
+
 
 class PublishedManager(models.Manager):
     def get_queryset(self):
@@ -9,7 +11,6 @@ class PublishedManager(models.Manager):
             .filter(status=Post.Status.PUBLISHED)
     
     
-# Create your models here.
 class Post(models.Model):
     class Status(models.TextChoices):
         DRAFT = "DF", "Draft"
@@ -20,7 +21,7 @@ class Post(models.Model):
     status = models.CharField(max_length=2
                                 ,choices=Status.choices,
                                 default=Status.DRAFT)
-    publish = models.DateTimeField(default=timezone.now)
+    publish = models.DateTimeField(default=timezone.datetime.now(pytz.timezone("Asia/Tokyo")))
     created = models.DateTimeField(auto_now_add=True)
     update = models.DateTimeField(auto_now=True)
     objects = models.Manager()
