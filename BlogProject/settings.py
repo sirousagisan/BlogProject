@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     "blog",
     "taggit",
     "django_bootstrap5",
+    "widget_tweaks"
 ]
 
 MIDDLEWARE = [

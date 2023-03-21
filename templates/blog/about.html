@@ -1,5 +1,6 @@
 {% extends 'blog/base.html' %}
 {% load static %}
+{% load widget_tweaks  %}
 
 {% block title %}about{% endblock title %}
 
@@ -55,7 +56,7 @@
         {% for field in form %}
 
         <label for="{{ field.id_for_label}}" class="form-label mt-2">{{ field.label }} </label><br><!-- /.form-label -->
-        {{ field }} <br>
+        {{ field|add_class:"form-control"}} <br>
 
         {% endfor %}
         {% csrf_token %}
