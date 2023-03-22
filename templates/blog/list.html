@@ -4,55 +4,60 @@
 {% block title %}My Blog{% endblock %}
 
 {% block content %}
+
 <div class="container">
+  <h1 class="py-4">My Blog</h1>
   <div class="row">
-    <div class="col">
-        <h1 class="px-5 pt-4">My Blog</h1>
-        <h5 class="px-5">I've written {% total_posts %} posts so far</h4>
-          <h3 class="px-5">
-            Latest posts
-            {% show_latest_posts %}
-          </h3><!-- /.px-5 -->
+    <div class="col-11">
+      {% for post in posts %}
+      <div class="row my-2">
+        <div class="col-md-8">
+          <div class="card bg-secondary text-dark" style="max-width: 60rem;">
+              <div class="card-body">
+                <h3 class="card-title">
+                  <a href="{{ post.get_absolute_url}}" style="color:#3cb371">
+                    {{ post.title }}
+                  </a>
+                </h3><!-- /.card-title -->
+                <p>Tags: {{ post.tags.all|join:", " }}</p>
+                <h6 class="card-subtitle">
+                  投稿日 {{ post.publish }}
+                </h6><!-- /.card-subtitle -->
+                  
+                <p class="card-text">
+                  {{ post.body|markdown|truncatewords:0|linebreaks}}
+                </p><!-- /.card-text -->
+                  
+              </div><!-- /.card-body -->
+            </div><!-- /.card -->
+              
+        </div><!-- /.col -->
+      </div><!-- /.row -->
+      
+      {% endfor %}
+      <div class="row justify-content-center">
+        <div class="col-6 mt-5">
+          {% include "paginator2.html" with page_obj=page_obj %}
+        </div><!-- /.col -->
+      </div><!-- /.row justify-content-center -->
+        
+        
+    </div><!-- /.col -->
+      
+    <div class="col-1 ">
+      <div class="sticky-top py-5" >
+        <div class="card card-body bg-secondary mt-4" style="width: 20rem;">
+          <h1 class="px-3 pt-4">My Blog</h1>
+          <h5 class="px-3">I've written {% total_posts %} posts so far</h4>
+            <p class="px-3">
+              Latest posts
+              {% show_latest_posts %}
+            </p><!-- /.px-5 -->
+        </div><!-- /.card card-body bg-secondary -->
+      </div>
     </div><!-- /.col -->
   </div><!-- /.row -->
 </div><!-- /.container -->
-
-<div class="container">
-  {% for post in posts %}
-  <div class="row my-2">
-    <div class="col md-8">
-      <div class="card bg-secondary text-dark" style="max-width: 60rem;">
-          <div class="card-body">
-            <h3 class="card-title">
-              <a href="{{ post.get_absolute_url}}" style="color:#3cb371">
-                {{ post.title }}
-              </a>
-            </h3><!-- /.card-title -->
-
-            <h6 class="card-subtitle">
-              投稿日 {{ post.publish }}
-            </h6><!-- /.card-subtitle -->
-
-            <p class="card-text">
-              {{ post.body|markdown|truncatewords:30|linebreaks}}
-            </p><!-- /.card-text -->
-
-          </div><!-- /.card-body -->
-        </div><!-- /.card -->
-
-    </div><!-- /.col -->
-  </div><!-- /.row -->
-  
-  {% endfor %}
-  <div class="row justify-content-center">
-    <div class="col-6 mt-5">
-      {% include "paginator2.html" with page_obj=page_obj %}
-    </div><!-- /.col -->
-  </div><!-- /.row justify-content-center -->
-</div><!-- /.container -->
-
-
-
 
 
 
