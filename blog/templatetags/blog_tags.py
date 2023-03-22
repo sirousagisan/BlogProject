@@ -19,20 +19,3 @@ def show_latest_posts(count=3):
 @register.filter(name="markdown")
 def markdown_format(text):
     return mark_safe(markdown.markdown(text))
-
-@register.filter
-def markdown_to_html(text):
-    """マークダウンをhtmlに変換する。"""
-    html = markdown.markdown(text, extensions=settings.MARKDOWN_EXTENSIONS)
-    return mark_safe(html)
-
-
-@register.filter()
-@stringfilter
-def markdown_fil(value):
-    return markdown.markdown(value, extensions=['markdown.extensions.fenced_code'])
-
-@register.filter
-@stringfilter
-def markdown2html(value):
-    return markdown.markdown(value)

@@ -11,21 +11,56 @@
     <div class="col-md-8" >
       <h1 style="color: #00bfff">{{ post.title }}</h1>
       <p class="date" style="color:#ccd5db">
-      Published {{ post.publish }} 
+      Published {{ post.publish }} <br>
+      tags: {{ post.tags.all|join:", "}}
       </p>
       
       {{ post.body|markdown|truncatewords_html:30 }}
       
     </div><!-- /.col -->
   </div><!-- /.row -->
+
+
+  {% with comment.count as total_comment %}
+    <div class="container mt-4">
+      <div class="row justify-content-center pt-5">
+        <div class="col-md-8">
+          <h2>
+            {{ total_comment }} comment{{ total_comment|pluralize}}
+          </h2>
+        </div><!-- /.col-md-8 -->
+      </div><!-- /.row justify-content-center -->
+    </div><!-- /.container mt-4 -->
+  {% endwith %}
+    
+  {% for cmt in comment %}
+  <div class="container mt-3">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="card card-body bg-secondary text-dark">
+          <p>
+            comment {{ forloop.counter }} by {{ cmt.name }} <br>
+            ~{{ cmt.created }}~
+          </p>
+          {{ cmt.body|linebreaks }}
+        </div><!-- /.card card-body bg-secondary text-dark -->
+      </div><!-- /.col-md-8 -->
+    </div><!-- /.row justify-content-center -->
+  </div><!-- /.container mt-3 -->
+  {% endfor %}
+
+  <div class="row justify-content-center mt-5">
+    <div class="col-md-8 mt-5">
+      <div class="card card-body text-dark bg-secondary">
+        {% include "comment_form.html" %}
+      </div><!-- /.card card-body text-dark -->
+    </div><!-- /.col-md-4 -->
+  </div><!-- /.row content-self-center -->
+
+
 </div><!-- /.container -->
 
-<div class="container d-none d-sm-block">
-  <div class="row">
-    <div class="col">
-      <h1>hello</h1>
-    </div><!-- /.col -->
-  </div><!-- /.row -->
-</div><!-- /.container d-none d-sm-block -->
+
+
 
 {% endblock content %}

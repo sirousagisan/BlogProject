@@ -6,6 +6,7 @@ from django.core.mail import send_mail
 from . import forms
 from . import models
 from django.utils import timezone
+from django.views.decorators.http import require_POST
 import pytz
 
 # Create your views here.
@@ -38,9 +39,13 @@ def post_detail(request, year, month, day, post):
     publish__year=year,
     publish__month=month,
     publish__day=day)
+    comment = post.comments.filter(active=True)
+    form = forms.CommentForm()
     return render(request,
                     'blog/detail.html',context={
                     'post': post, 
+                    "comment": comment,
+                    "form": form
                     })
     
 class PostListView(generic.ListView):
@@ -48,3 +53,21 @@ class PostListView(generic.ListView):
     context_object_name = "posts"
     paginate_by = 5
     template_name = "blog/list.html"
+
+
+@require_POST
+def post_comment(request, post_id):
+    post = get_object_or_404(models.Post, id=post_id,
+                        status=models.Post.Status.PUBLISHED)
+    comment = None
+    form = forms.CommentForm(data=request.POST)
+    if form.is_valid():
+        comment = form.save(commit=False)
+        comment.post = post
+        comment.save()
+    return render(request, "blog/comment.html",
+                context={
+                    "post": post,
+                    "form": form,
+                    "comment": comment
+                })

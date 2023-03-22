@@ -34,7 +34,7 @@
             </h6><!-- /.card-subtitle -->
 
             <p class="card-text">
-              {{ post.body|truncatewords:30|linebreaks}}
+              {{ post.body|markdown|truncatewords:30|linebreaks}}
             </p><!-- /.card-text -->
 
           </div><!-- /.card-body -->
