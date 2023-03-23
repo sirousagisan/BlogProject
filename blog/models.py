@@ -78,3 +78,10 @@ class developed(models.Model):
                                 choices=Status.choices,
                                 default=Status.DRAFT)
     Published = developManager()
+
+class FormModel(models.Model):
+    name = models.CharField(max_length=30)
+    email = models.EmailField()
+    enquiry = models.TextField()
+    def __str__(self) -> str:
+        return f"from {self.name}"

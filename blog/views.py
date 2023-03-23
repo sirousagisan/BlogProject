@@ -21,6 +21,7 @@ def aboutView(request):
     if request.method == "POST":
         form = forms.aboutForm(request.POST)
         if form.is_valid():
+            form.save()
             cd = form.cleaned_data
             subject = "Kato's siteから"
             message = "フォームの利用ありがとうございます。"
