@@ -5,9 +5,10 @@ from django.urls import reverse_lazy
 from django.core.mail import send_mail
 from . import forms
 from . import models
-from django.utils import timezone
 from django.views.decorators.http import require_POST
-import pytz
+from taggit.models import Tag
+from django.core.paginator import Paginator, EmptyPage,\
+    PageNotAnInteger
 
 # Create your views here.
 
@@ -53,6 +54,28 @@ class PostListView(generic.ListView):
     context_object_name = "posts"
     paginate_by = 5
     template_name = "blog/list.html"
+
+
+def post_list(request, tag_slug=None):
+    post_lists = models.Post.published.all()
+    tag = None
+    if tag_slug:
+        tag = get_object_or_404(Tag, slug=tag_slug)
+        post_lists = post_lists.filter(tags__in=[tag])
+    paginator = Paginator(post_lists, 5)
+    page_number = request.GET.get('page', 1)
+    try:
+        posts = paginator.page(page_number)
+    except PageNotAnInteger:
+    # If page_number is not an integer deliver the first page
+        posts = paginator.page(1)
+    except EmptyPage:
+    # If page_number is out of range deliver last page of results
+        posts = paginator.page(paginator.num_pages)
+    return render(request,
+                    'blog/list.html',
+                    {'posts': posts,
+                    'tag': tag})
 
 
 @require_POST

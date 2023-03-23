@@ -62,3 +62,19 @@ class Comment(models.Model):
         ]
     def __str__(self):
         return f"Comment by {self.name} on {self.post}"
+
+class developManager(models.Manager):
+    def get_queryset(self):
+        return super().get_queryset()\
+            .filter(status=developed.Status.PUBLISHED)
+
+class developed(models.Model):
+    class Status(models.TextChoices):
+        DRAFT = "DF", "Draft"
+        PUBLISHED = "PB", "Published"
+    image = models.ImageField()
+    body = models.TextField()
+    publish = models.CharField(max_length=2,
+                                choices=Status.choices,
+                                default=Status.DRAFT)
+    Published = developManager()
