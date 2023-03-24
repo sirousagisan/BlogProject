@@ -12,7 +12,13 @@
       <h1 style="color: #00bfff">{{ post.title }}</h1>
       <p class="date" style="color:#ccd5db">
       Published {{ post.publish }} <br>
-      tags: {{ post.tags.all|join:", "}}
+      tags: 
+      {% for tag in post.tags.all %}
+        <a href="{% url 'blog:post_list_by_tag' tag.slug %}" style="color:#3cb371">
+          {{ tag.name }}
+        </a>
+        {% if not forloop.last %}, {% endif %}
+      {% endfor %}
       </p>
       
       {{ post.body|markdown|truncatewords_html:30 }}
