@@ -23,8 +23,10 @@
           電子工学科卒<br>
           現在、情報科学専攻　修士1年<br><br>
           ソフトウェア開発と自然言語処理に興味がある。<br>
+          車輪の再開発が好き
 
         </p><!-- /.card-text -->
+        <img src="{% static 'img/leaf.jpg' %}" alt="leaf">
       </div><!-- /.card card-body -->
     </div><!-- /.col-5 -->
     
@@ -36,11 +38,11 @@
             SNS
           </h4><!-- /.card-title text-center -->
           <div class="col">
-            <a href="https://twitter.com/yyyyuuuuabc" target="_brank">
-              <img src="{% static 'img/twitter.png' %}" alt="twitter" width="40" height="40" class="mx-3">
+            <a href="https://twitter.com/shirousaGo" target="_brank">
+              <img src="{% static 'img/twitter.svg' %}" alt="twitter" width="40" height="40" class="mx-3">
             </a>
             <a href="https://github.com/sirousagisan" target="_brank">
-              <img src="{% static 'img/github.png' %}" alt="github" height="37" width="37"class="mx-3">
+              <img src="{% static 'img/github.svg' %}" alt="github" height="37" width="37"class="mx-3">
             </a>
           </div><!-- /.col -->
         </div><!-- /.crad-body -->
@@ -61,7 +63,7 @@
         {% endfor %}
         {% csrf_token %}
         <div class="text-end ">
-          <button class="btn btn-primary" type="submit" >送信する</button>
+          <button class="btn btn-primary" type="submit" disabled>SNSまでお願いします</button>
         </div><!-- /.text-end -->
         
       </form>
