@@ -20,14 +20,14 @@
           <div class="card bg-secondary text-dark" style="max-width: 60rem;">
               <div class="card-body">
                 <h3 class="card-title">
-                  <a href="{{ post.get_absolute_url}}" style="color:#3cb371">
+                  <a href="{{ post.get_absolute_url}}" style="color:#00ced1">
                     {{ post.title }}
                   </a>
                 </h3><!-- /.card-title -->
                 <p>
                   Tags:
                   {% for tag in post.tags.all %}
-                    <a href="{% url 'blog:post_list_by_tag' tag.slug %}" style="color:#3cb371">
+                    <a href="{% url 'blog:post_list_by_tag' tag.slug %}" style="color:#00ced1">
                       {{ tag.name }}
                     </a>
                     {% if not forloop.last %}, {% endif %}
@@ -70,7 +70,7 @@
           <ul>
             {% for post in most_comments_posts %}
               <li>
-                <a href="{{ post.get_absolute_url }}"style="color:#3cb371">{{ post.title }}</a>
+                <a href="{{ post.get_absolute_url }}"style="color:#00ced1">{{ post.title }}</a>
               </li>
             {% endfor %}
           </ul>
